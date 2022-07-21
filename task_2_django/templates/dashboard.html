@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+  <div class='container'>
+    <div class='jumbotron'>
+      {% if user.is_authenticated %}
+         <h3 align='center'>Username: {{ name }}!</h3>
+         <h3 align='center'>Phone : {{ phone }}!</h3>
+         <h3 align='center'>Email : {{ email }}!</h3>
+         <p align='center' style='float:center'>
+         <button class="btn btn-danger" > <a href='logout' style="color:white"> Log out </a></button>
+         </span>
+      {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">Log In</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

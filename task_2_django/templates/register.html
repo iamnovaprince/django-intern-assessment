@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+  {% comment %} <h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    
+    <button type="submit">Login</button>
+  </form> {% endcomment %}
+  <section class="login-clean">
+    <form method="post" class="center">
+        {% csrf_token %}
+        <h2 class="sr-only">Login Form</h2>
+
+        <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
+
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">{{ form.non_field_errors }} </div>
+        {% endif %}  
+
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}<br>
+            {{ field }}
+            {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+        <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Create Account</button></div>
+        <a class="forgot" href="{% url 'login' %}" style="color: var(--blue);">Already have account</a>
+        
+    </form>
+</section>
+{% endblock %}
